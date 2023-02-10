@@ -32,8 +32,7 @@
                 <label for="floatingSelect">Select a Customer</label>
 
                 <div class="form-floating">
-
-                    <select class="form-select" name="customer_id" id="customer" aria-label="Floating label select example" class="browser-default">
+                    <select  name="customer_id" id="customer"  class="browser-default">
 {{--                        <option selected>Open this select menu</option>--}}
                         <option selected>Chose</option>
                     @foreach($customers as $customer)
@@ -63,7 +62,7 @@
 {{--                </div>--}}
 
 
-                    <textarea class="form-control" name="description" id="description" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                    <textarea class="form-control" name="description" id="description" placeholder="Leave a comment here"  style="height: 100px"></textarea>
 
                 </div>
                 <div class="col-12">

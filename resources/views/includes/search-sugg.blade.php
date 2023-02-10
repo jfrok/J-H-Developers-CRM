@@ -1,7 +1,7 @@
 @forelse($customerQ as $customer)
     <a href="{{url('/customers/customers-details/'.$customer->id)}}" class="btn btn-light">
         {{$customer->fullname}}
-        {{$customer->email}}
+{{--        {{$customer->email}}--}}
     </a>
 
 @empty

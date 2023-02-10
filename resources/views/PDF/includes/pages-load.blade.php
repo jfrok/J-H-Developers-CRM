@@ -1,7 +1,7 @@
 <div class="row" style="padding: 20px 30px">
     @foreach($pages as $page)
-        <div class="col shadow" style="margin: 20px;background: #fff">
-                <div class="card" style="width: 18rem;">
+        <div class="col" style="margin: 10px;background: #fff">
+                <div class="card" style="width: 100%;padding: 20px 30px">
                     <div class="card-body">
                         <a href="{{route('view-Page',[$page->id])}}">
 

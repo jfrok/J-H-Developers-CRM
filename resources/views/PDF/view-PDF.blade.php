@@ -29,11 +29,11 @@
 {{--                @endforeach--}}
 
 {{--            </ul>--}}
-            <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
-                     tabindex="0">
-                    <div style="display: flex; justify-content: end">
-                        <div class="d-block">
+{{--            <div class="tab-content" id="pills-tabContent">--}}
+{{--                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"--}}
+{{--                     tabindex="0">--}}
+{{--                    <div style="display: flex; justify-content: end">--}}
+{{--                        <div class="d-block">--}}
                             <div class="d-flex justify-content-end mb-4 pull-center">
                                 <a onclick="pdfScript()" class="btn btn-primary">Export PDF</a>
                             </div>
@@ -42,13 +42,13 @@
 {{--                                       id="flexSwitchCheckDefault">--}}
 {{--                                <label class="form-check-label" for="flexSwitchCheckDefault">Logo</label>--}}
 {{--                            </div>--}}
-{{--                            --}}{{--                            onchange="setTimeInputs($(this).parent())"--}}
-{{--                            --}}{{--                            <div class="form-check">--}}
-{{--                            --}}{{--                                <input class="form-check-input" name="titleC" type="checkbox" onchange="setTimeInputs($(this).parent())"  id="title">--}}
-{{--                            --}}{{--                                <label class="form-check-label" for="defaultCheck1">--}}
-{{--                            --}}{{--                                    Title--}}
-{{--                            --}}{{--                                </label>--}}
-{{--                            --}}{{--                            </div>--}}
+{{--                                                        onchange="setTimeInputs($(this).parent())"--}}
+{{--                                                        <div class="form-check">--}}
+{{--                                                            <input class="form-check-input" name="titleC" type="checkbox" onchange="setTimeInputs($(this).parent())"  id="title">--}}
+{{--                                                            <label class="form-check-label" for="defaultCheck1">--}}
+{{--                                                                Title--}}
+{{--                                                            </label>--}}
+{{--                                                        </div>--}}
 {{--                            <div class="form-check form-switch">--}}
 {{--                                <input class="form-check-input" name="titleC" onchange="SetTitle($(this).parent())"--}}
 {{--                                       type="checkbox" role="switch"--}}
@@ -56,12 +56,11 @@
 {{--                                <label class="form-check-label" for="flexSwitchCheckDefault">Title</label>--}}
 
 {{--                            </div>--}}
-                        </div>
-                    </div>
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="reload-scripts">
                         @include('includes.scripts-load')
                     </div>
-
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                      tabindex="0">...
@@ -75,11 +74,17 @@
             </div>
 
         </div>
+{{--    <a onclick="showPdf()">view</a>--}}
+{{--        <div class="pdf" style="padding: 20px 30px;display: none">--}}
+{{--        <iframe src="https://jh-crm.info/customers/create-PDF/3" style="width: 100%;height:1000px;display: flex;justify-content: center" frameborder="0"></iframe>--}}
+{{--        </div>--}}
     </div>
 @endsection
 @section('scripts')
     <script>
-
+// function showPdf(){
+//     $(".pdf").css("display","flex")
+// }
         function SetTitle() {
             if ($('input[name="titleC"]').is(':checked')) {
                 $('.titleHide').removeAttr('style');

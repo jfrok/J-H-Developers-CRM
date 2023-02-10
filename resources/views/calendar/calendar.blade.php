@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        @media only screen and (max-width: 748px) {
+            #calenderView{
+                font-size: 10px;
+            }
+        }
+        #calenderView{
+
+        }
+    </style>
     <div class="pagetitle">
         <h1>Calendar</h1>
         <nav>

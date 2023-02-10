@@ -97,7 +97,7 @@ class ProjectsController extends Controller
         $edit->save();
         $this->logAdd($edit->title, $edit->id, 'edit', 'Project');
 
-        return response()->json();
+        return response()->json('success');
     }
 
     public function getProjectRequest()

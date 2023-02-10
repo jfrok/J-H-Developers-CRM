@@ -2,8 +2,8 @@
     <div class="d-flex align-items-center justify-content-between">
         <a href="{{route('dashboard')}}"
            class="logo d-flex align-items-center">
-            {{--            <img--}}
-            {{--                src="assets/img/logo.png" alt=""> --}}
+{{--                        <img--}}
+{{--                            src="{{asset('/icons/main-logo-384x384.png')}}" alt="">--}}
             <span class="d-none d-lg-block">Admin</span> </a> <i
             class="bi bi-list toggle-sidebar-btn"></i></div>
     <div class="search-bar">
@@ -153,7 +153,7 @@
                 <li class="nav-item dropdown pe-3">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img
-                            src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> <span
+                            src="{{asset('/icons/PNG/9.png')}}" alt="Profile" class="rounded-circle"> <span
                             class="d-none d-md-block dropdown-toggle ps-2">{{auth()->user()->name}}</span> </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
@@ -218,26 +218,21 @@
         </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('calendar')}}"> <i
-                    class="bi bi-layout-text-window-reverse"></i>
+                    class="bi bi-calendar"></i>
                 <span>Calendar</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#"> <i
-                    class="bi bi-bar-chart"></i><span>Hours</span>
-                <i class="bi bi-chevron-down ms-auto"></i> </a>
-            <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="{{route('hours-overview')}}"> <i class="bi bi-circle">
-                        </i><span>Overview</span> </a></li>
-                <li><a href="charts-apexcharts.html"> <i class="bi bi-circle"></i><span>ApexCharts</span> </a></li>
-                <li><a href="charts-echarts.html"> <i class="bi bi-circle"></i><span>ECharts</span> </a></li>
-            </ul>
-        </li>
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('pages')}}"> <i
                     class="bi bi-layout-text-window-reverse"></i>
                 <span>PDF</span>
+            </a>
+        </li>
+ <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('hours-overview')}}"> <i
+                    class="bi bi-hourglass"></i>
+                <span>Hours</span>
             </a>
         </li>
         <li class="nav-item">

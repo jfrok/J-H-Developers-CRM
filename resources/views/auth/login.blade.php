@@ -3,15 +3,31 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- PWA  -->
+    <link rel="icon" href="{{asset('/icons/PNG/1.png')}}" />
+
+    <meta name="theme-color" content="#fff"/>
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="{{asset('/icons/PNG/1.png')}}">
+    <meta name="apple-mobile-web-app-status-bar" content="#fff">
+    <link rel="apple-touch-startup-image" href="{{asset('/icons/PNG/1.png')}}"
+          media="orientation: portrait">
+    <link rel="apple-touch-startup-image" href="{{asset('/icons/PNG/9.png')}}"
+          media="orientation: landscape">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Login</title>
+    <title>@yield('title' ?? 'J&H')</title>
     <meta name="robots" content="noindex, nofollow">
     <meta content="" name="description">
     <meta content="" name="keywords">
-    <link href="{{asset('build/assets/img/favicon.png')}}" rel="icon">
-    <link href="{{asset('build/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+    <link href="{{ asset('fullcalendar/main.css') }}" rel="stylesheet">
+    <script src="{{ asset('fullcalendar/main.js') }}"></script>
+
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+            rel="stylesheet">
     <link href="{{asset('build/assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('build/assets/css/bootstrap-icons.css')}}" rel="stylesheet">
     <link href="{{asset('build/assets/css/boxicons.min.css')}}" rel="stylesheet">
@@ -20,11 +36,10 @@
     <link href="{{asset('build/assets/css/remixicon.css')}}" rel="stylesheet">
     <link href="{{asset('build/assets/css/simple-datatables.css')}}" rel="stylesheet">
     <link href="{{asset('build/assets/css/style.css')}}" rel="stylesheet">
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-
 
 </head>
 {{--<x-guest-layout>--}}
@@ -113,13 +128,17 @@
 {{--        </form>--}}
 {{--    </div>--}}
 {{--</div>--}}
+
 <main>
     <div class="container">
         <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-                        <div class="d-flex justify-content-center py-4"> <a href="index.html" class="logo d-flex align-items-center w-auto"> <img src="assets/img/logo.png" alt=""> <span class="d-none d-lg-block">Admin</span> </a></div>
+                        <div class="d-flex justify-content-center py-4">
+ <img src="{{asset('/icons/PNG/1.png')}}" style="width: 144px;" alt="">
+{{--<span class="d-none d-lg-block">Admin</span> --}}
+                        </div>
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="pt-4 pb-2">
@@ -151,9 +170,9 @@
                                     @if (Route::has('password.request'))
                                         <p class="small mb-0"><a href="{{ route('password.request') }}">Forgot password?</a></p>
                                     @endif
-                                    <div class="col-12">
-                                        <p class="small mb-0">Don't have account? <a href="{{route('register')}}">Create an account</a></p>
-                                    </div>
+{{--                                    <div class="col-12">--}}
+{{--                                        <p class="small mb-0">Don't have account? <a href="{{route('register')}}">Create an account</a></p>--}}
+{{--                                    </div>--}}
                                 </form>
                             </div>
                         </div>
@@ -163,5 +182,13 @@
         </section>
     </div>
 </main>
+<script src="{{ asset('/sw.js') }}"></script>
+<script>
+    if (!navigator.serviceWorker.controller) {
+        navigator.serviceWorker.register("/sw.js").then(function (reg) {
+            console.log("Service worker has been registered for scope: " + reg.scope);
+        });
+    }
+</script>
 </body>
 </html>

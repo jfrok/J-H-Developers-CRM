@@ -42,6 +42,7 @@ class Controller extends BaseController
         $hourAll = Hours::all();
         $logBook = Logbook::all();
         $admins = User::where('role', 'admin')->get();
+        $role = User::find(Auth::id());
 
         $total = 0;
 
@@ -71,7 +72,7 @@ class Controller extends BaseController
 
 //dd($dates);
         //  echo "<pre>", print_r($dates), "</pre>";
-        return view('dashboard', compact('notis', 'customerAll', 'projectAll', 'p', 'hourAll', 'logBook', 'total','customers'));
+        return view('dashboard', compact('notis', 'customerAll', 'projectAll', 'p', 'hourAll', 'logBook', 'total','customers','role'));
     }
 public function filters($month,$year)
 {

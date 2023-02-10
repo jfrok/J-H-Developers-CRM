@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <!-- PWA  -->
-    <link rel="icon" href="{{asset('favicon.icon')}}" />
+    <link rel="icon" href="{{asset('/icons/PNG/9.png')}}" />
 
-    <meta name="theme-color" content="#6777ef"/>
-    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
+    <meta name="theme-color" content="#fff"/>
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="{{asset('/icons/PNG/1.png')}}">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar" content="#fff">
+<link href="{{asset('/icons/PNG/1.png')}}" sizes="384x384" rel="apple-touch-startup-image" />
+
     <title>@yield('title' ?? 'J&H')</title>
     <meta name="robots" content="noindex, nofollow">
     <meta content="" name="description">
@@ -17,8 +25,6 @@
     <link href="{{ asset('fullcalendar/main.css') }}" rel="stylesheet">
     <script src="{{ asset('fullcalendar/main.js') }}"></script>
 
-    <link href="{{asset('build/assets/img/favicon.png')}}" rel="icon">
-    <link href="{{asset('build/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <link

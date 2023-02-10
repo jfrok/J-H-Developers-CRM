@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
+{{--    <div id="key-canvas"></div>--}}
+{{--    <script src="https://cdn.keysoftware.nl/template/custom/api/js/key-canvas.js" data-url="https://dev.keysoftware.nl/api/woningen/aanbod" async></script>--}}
     <div class="pagetitle">
         <h1>Dashboard</h1>
         <nav>
@@ -12,6 +13,7 @@
         </nav>
     </div>
     <section class="section dashboard">
+        @if($role->role == 'admin')
         <div class="modal fade" id="hourModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -113,17 +115,23 @@
         </div>
 
         </div>
+        @endif
         <div class="row">
 
 
             <div class="col-lg-8">
                 <div class="row">
-                    <div class="d-flex justify-content-end mb-4 pull-center">
-                        <div style="margin-right: 10px;">
-                            <a onclick="alertNoti()" class="btn btn-primary">Alert Noti</a>
+                    @if($role->role == 'admin')
+                        <div class="d-flex justify-content-end mb-4 pull-center">
+                            <div style="margin-right: 10px;">
+                                <a onclick="alertNoti()" class="btn btn-primary">Alert Noti</a>
+                            </div>
+
+                            <a onclick="fillHours()" class="btn btn-primary">Add Hours</a>
                         </div>
-                        <a onclick="fillHours()" class="btn btn-primary">Add Hours</a>
-                    </div>
+
+                    @endif
+
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card sales-card">
                             <div class="filter">
@@ -141,12 +149,12 @@
                                 <h5 class="card-title">Sales <span>| Today</span></h5>
                                 <div class="d-flex align-items-center">
                                     <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-cart"></i></div>
                                     <div class="ps-3">
                                         <h6>145</h6>
                                         <span class="text-success small pt-1 fw-bold">12%</span> <span
-                                            class="text-muted small pt-2 ps-1">increase</span>
+                                                class="text-muted small pt-2 ps-1">increase</span>
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +177,7 @@
                                 <h5 class="card-title">Revenue <span>| This Month</span></h5>
                                 <div class="d-flex align-items-center">
                                     <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-currency-dollar"></i></div>
                                     <div class="ps-3">
 
@@ -193,19 +201,19 @@
                                     <li><a class="dropdown-item" href="#">This Month</a></li>
                                     <li><a class="dropdown-item" href="#">This Year</a></li>
                                 </ul>
-{{--                                <form>--}}
-{{--                                <select name="filter" id="filter" onchange="this.form.submit()">--}}
-{{--                                    <option class="dropdown-item" value="{{[\Carbon\Carbon::today()->format('Y-m-d')]}}" {{\Carbon\Carbon::today()->format('Y-m-d') == request()->query('filter')? 'selected':''}}>Today</option>--}}
-{{--                                    <option class="dropdown-item" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" {{\Carbon\Carbon::now()->format('m') == request()->query('filter')? 'selected':''}}>This Month</option>--}}
-{{--                                    <option class="dropdown-item" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" {{\Carbon\Carbon::now()->format('Y') == request()->query('filter')? 'selected':''}}>This Year</option>--}}
-{{--                                </select>--}}
-{{--                                </form>--}}
+                                {{--                                <form>--}}
+                                {{--                                <select name="filter" id="filter" onchange="this.form.submit()">--}}
+                                {{--                                    <option class="dropdown-item" value="{{[\Carbon\Carbon::today()->format('Y-m-d')]}}" {{\Carbon\Carbon::today()->format('Y-m-d') == request()->query('filter')? 'selected':''}}>Today</option>--}}
+                                {{--                                    <option class="dropdown-item" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" {{\Carbon\Carbon::now()->format('m') == request()->query('filter')? 'selected':''}}>This Month</option>--}}
+                                {{--                                    <option class="dropdown-item" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" {{\Carbon\Carbon::now()->format('Y') == request()->query('filter')? 'selected':''}}>This Year</option>--}}
+                                {{--                                </select>--}}
+                                {{--                                </form>--}}
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Customers <span>| This Year</span></h5>
                                 <div class="d-flex align-items-center">
                                     <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-people"></i></div>
                                     <div class="ps-3">
                                         <h6>{{$customerAll->count()}}</h6>
@@ -246,7 +254,7 @@
                                                     name: 'Projects',
                                                     data: [
                                                         @foreach($p as $pd)
-                                                            @if(\App\Models\Project::whereDate('created_at', \Carbon\Carbon::parse($pd))->count() > 0 || !\Carbon\Carbon::parse($pd)->isFuture())
+                                                                @if(\App\Models\Project::whereDate('created_at', \Carbon\Carbon::parse($pd))->count() > 0 || !\Carbon\Carbon::parse($pd)->isFuture())
                                                             "{{ \App\Models\Project::whereDate('created_at', \Carbon\Carbon::parse($pd))->count() }}",
                                                         @else
                                                             "",
@@ -259,11 +267,11 @@
                                                     data: [
 
                                                         @foreach($p as $pd)
-                                                            @if(\App\Models\Customer::whereDate('created_at', \Carbon\Carbon::parse($pd))->count() > 0 || !\Carbon\Carbon::parse($pd)->isFuture())
+                                                                @if(\App\Models\Customer::whereDate('created_at', \Carbon\Carbon::parse($pd))->count() > 0 || !\Carbon\Carbon::parse($pd)->isFuture())
                                                             "{{ \App\Models\Customer::whereDate('created_at', \Carbon\Carbon::parse($pd))->count() }}",
                                                         @else
-                                                        "",
-                                                           @endif
+                                                            "",
+                                                        @endif
                                                         @endforeach
 
 
@@ -341,13 +349,20 @@
                                     @forelse($projectAll as $project)
                                         @php $cus = \App\Models\Customer::where('id',$project->customer_id)->first() @endphp
                                         @if($cus!= null)
-                                        <tr>
-                                            <th scope="row"><a href="#">#{{$project->id}}</a></th>
-                                            <td><a href="{{route('details',[$cus->id])}}">{{$cus->fullname ?? ''}}</a></td>
-                                            <td><a href="mailto:" class="text-primary">{{$cus->email ?? ''}}</a></td>
-                                            <td><a href="{{route('details-project',[$project->id])}}">{{$project->title}}</a></td>
-                                            <td><span class="badge {{$project->status == 'pending' ? 'bg-warning' : ''}} {{$project->status == 'ready' ? 'bg-primary' : ''}} {{$project->status == 'delivered' ? 'bg-success' : ''}} {{$project->status == 'drop' ? 'bg-danger' : ''}}">{{$project->status}}</span></td>
-                                        </tr>
+                                            <tr>
+                                                <th scope="row"><a href="#">#{{$project->id}}</a></th>
+                                                <td>
+                                                    <a href="{{route('details',[$cus->id])}}">{{$cus->fullname ?? ''}}</a>
+                                                </td>
+                                                <td><a href="mailto:" class="text-primary">{{$cus->email ?? ''}}</a>
+                                                </td>
+                                                <td>
+                                                    <a href="{{route('details-project',[$project->id])}}">{{$project->title}}</a>
+                                                </td>
+                                                <td>
+                                                    <span class="badge {{$project->status == 'pending' ? 'bg-warning' : ''}} {{$project->status == 'ready' ? 'bg-primary' : ''}} {{$project->status == 'delivered' ? 'bg-success' : ''}} {{$project->status == 'drop' ? 'bg-danger' : ''}}">{{$project->status}}</span>
+                                                </td>
+                                            </tr>
                                         @endif
                                     @empty
                                         <tr>
@@ -479,8 +494,8 @@
                                     $end = \Carbon\Carbon::now()->addMinutes(60);
                                    $parseEnd =  \Carbon\Carbon::parse($end);
                                     $subDays = $start->diff($parseEnd);
-$getProject = \App\Models\Project::find($log->id_of);
-$getAdmin = \App\Models\User::find($log->user_id)
+                $getProject = \App\Models\Project::find($log->id_of);
+                $getAdmin = \App\Models\User::find($log->user_id)
 
                                 @endphp
                                 @if($log->created_at->format('Y-m-d') == \Carbon\Carbon::now()->format('Y-m-d'))

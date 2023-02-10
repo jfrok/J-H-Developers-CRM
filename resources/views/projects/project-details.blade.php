@@ -77,7 +77,7 @@
                                             {{--                                        <option value="{{$customer->id}}" selected>{{$customer->fullname}}</option>--}}
                                             @foreach($customers as $customerAll)
                                                 @if($customers != null)
-                                                <option value="{{ $customer->id ?? '' == $customerAll->id ? $customer->id : $customerAll->id ?? '' }}" {{ $customer->id == $customerAll->id ? 'selected' : ''}}>{{ ($customer->id == $customerAll->id ? $customer->fullname : $customerAll->fullname ) }} </option>
+                                                <option value="{{ $project->customer_id == $customerAll->id ? $project->customer_id : $customerAll->id  }}" {{ $customer->id == $customerAll->id ? 'selected' : ''}}>{{ ($customer->id == $customerAll->id ? $customer->fullname : $customerAll->fullname ) }} </option>
                                                 @endif
                                             @endforeach
                                         </select>

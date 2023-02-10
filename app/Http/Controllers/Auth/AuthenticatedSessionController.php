@@ -40,7 +40,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
 
-       $this->logAdd(Auth::id(),'logged in');
+        $this->logAdd(Auth::id(),'logged in');
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
